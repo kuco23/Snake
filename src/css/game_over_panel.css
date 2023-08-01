@@ -1,0 +1,89 @@
+@keyframes flicker {
+  0%, 20%, 40%, 50%, 65% {opacity: 0.4;}
+  10%, 30%, 60%, 90% {opacity: 1;}
+}
+@-webkit-keyframes flicker {
+  0%, 20%, 40%, 50%, 65% {opacity: 0.4;}
+  10%, 30%, 60%, 90% {opacity: 1;}
+}
+
+div.game-over-panel {
+  display: none;
+  position: absolute;
+  right: 50%;
+  bottom: 50%;
+  transform: translate(50%, 50%);
+
+  text-align: center;
+  font-family: 'Bungee Hairline';
+}
+/* player won */
+div.game-over-panel div:nth-child(1) {
+  display: none;
+  text-shadow: 0vh 0vh 4vh powderblue, 0 0 6vh white;
+  color: powderblue;
+  font-size: 14vh;
+}
+/* player lost */
+div.game-over-panel div:nth-child(2) {
+  display: none;
+  text-shadow: 0.5vh 0.5vh 1vh FireBrick, 0 0 6vh white;
+  color: FireBrick;
+  font-size: 14vh;
+}
+
+div.game-over-panel div:nth-child(1) span:nth-child(2),
+div.game-over-panel div:nth-child(2) span:nth-child(2) {
+  opacity: 0.4;
+  text-shadow: none;
+}
+div.game-over-panel div:nth-child(1) span:nth-child(5),
+div.game-over-panel div:nth-child(2) span:nth-child(5) {
+  animation: flicker 3s linear infinite;
+  -webkit-animation: flicker 3s linear infinite;
+}
+
+div.game-over-panel div:nth-child(3) {
+  font-size: 8vh;
+  color: purple;
+  text-shadow: 0.4vh 0.4vh 1vh purple;
+}
+
+div.game-over-panel div:nth-child(3) span:nth-child(1) {
+  color: powderblue;
+  text-shadow: 0 0 1vh powderblue;
+}
+div.game-over-panel div:nth-child(3) span:nth-child(1):hover {
+  cursor: pointer;
+  color: white;
+  text-shadow: 0 0 2vh white;
+}
+div.game-over-panel div:nth-child(3) span:nth-child(2) {
+  color: DarkRed;
+  text-shadow: 0 0 1vh DarkRed;
+}
+div.game-over-panel div:nth-child(3) span:nth-child(2):hover {
+  cursor: pointer;
+  color: red;
+  text-shadow: 0 0 2vh red;
+}
+
+@media only screen and (max-width: 80vh) {
+  div.game-over-panel div:nth-child(1),
+  div.game-over-panel div:nth-child(2) {
+    font-size: 10vh;
+  }
+  div.game-over-panel div:nth-child(3) {
+    font-size: 6vh;
+  }
+}
+
+@media only screen and (max-width: 60vh) {
+  div.game-over-panel div:nth-child(1),
+  div.game-over-panel div:nth-child(2) {
+    font-size: 8vh;
+  }
+  div.game-over-panel div:nth-child(3) {
+    font-size: 4vh;
+  }
+}

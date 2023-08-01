@@ -1,0 +1,41 @@
+* {box-sizing: border-box;}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  background-color: rgb(211, 211, 211);
+  background-image: radial-gradient(transparent, #10151e);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  transition: background-color 1s;
+  -webkit-transition: background-color 1s;
+}
+
+canvas {
+  display: none;
+  margin: 0;
+  padding: 0;
+}
+
+div.align-center {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+div.base-panel {
+  display: flex;
+  flex-flow: column wrap;
+  width: 50vh;
+  text-align: center;
+  font-family: 'Indie Flower';
+}

@@ -1,0 +1,44 @@
+#menu-panel span {
+  flex-basis: 10vh;
+  margin-bottom: 4vh;
+  font-size: 10vh;
+  text-shadow: 0.4vh 0.4vh 1vh purple;
+}
+
+#menu-panel a {
+  flex-basis: 10vh;
+  text-decoration: none;
+  padding: 2vh;
+  font-size: 6vh;
+  box-shadow: 0.4vh 0.4vh 2vh black;
+  border: 2px solid transparent;
+  transition: all 0.3s linear;
+}
+
+/* have no idea why its the second child */
+#menu-panel > a:nth-child(2) {
+  border-top-left-radius: 1vh;
+  border-top-right-radius: 1vh;
+}
+#menu-panel > a:last-child {
+  border-bottom-left-radius: 1vh;
+  border-bottom-right-radius: 1vh;
+}
+#menu-panel > a:nth-child(even) {
+  background-color: black;
+  color: white;
+}
+#menu-panel > a:nth-child(odd) {
+  background-color: white;
+  color: black;
+}
+#menu-panel > a:hover {
+  cursor: pointer;
+  color: purple;
+}
+
+@media screen and (max-width: 450px) {
+ #menu-panel {
+  width: 90%;
+ }
+}

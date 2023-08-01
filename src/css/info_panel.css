@@ -1,0 +1,28 @@
+#info-panel-container {
+  visibility: hidden;
+}
+
+#info-panel {
+  width: 50vmax;
+  font-size: 5vh;
+}
+
+#info-content {
+  text-shadow: 0.1vh 0.1vh 0.3vh FireBrick;
+}
+
+div.to-menu-button {
+  display: inline-block;
+  width: 100%;
+  margin-top: 4vh;
+  text-align: center;
+}
+
+div.to-menu-button > span {
+  cursor: pointer;
+  color: DarkRed;
+  transition: color 0.4s linear;
+}
+div.to-menu-button > span:hover {
+  color: Red;
+}

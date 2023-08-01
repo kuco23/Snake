@@ -1,0 +1,86 @@
+#settings-panel-container {
+  visibility: hidden;
+}
+
+#settings-panel {
+  display: flex;
+  flex-flow: column wrap;
+  width: 50vmax;
+  padding-top: 5vmax;
+  text-align: center;
+  font-family: 'Indie Flower';
+  font-size: 5vh;
+  text-shadow: 0.1vh 0.1vh 0.3vh purple;
+}
+
+.snake-text-input {
+  margin: 0.8vh 0 0.8vh 0;
+  padding: 0 0.4vw 0 0.8vw;
+  width: 50%;
+  background-color: rgba(0, 0, 0, .1);
+  font-family: 'Indie Flower';
+  font-size: 5vh;
+  border: none;
+  transition: all 0.1s linear;
+}
+.snake-text-input:hover {
+  box-shadow: 0.6vh 0.6vh 1vh rgba(0, 0, 0, .6);
+}
+.snake-text-input:focus,
+.snake-text-input:active {
+  box-shadow: 0.6vh 0.6vh 1vh rgba(0, 0, 0, .8);
+  background-color: rgba(0, 0, 0, .3);
+}
+
+div.settings-buttons {
+  display: inline-block;
+  width: 50%;
+  margin-top: 4vh;
+  text-align: center;
+}
+div.settings-buttons span {
+  cursor: pointer;
+  transition: all 0.4s linear;
+}
+div.settings-buttons span:first-child {
+  float: left;
+  margin-left: 2vw;
+  color: Green;
+  text-shadow: none;
+}
+div.settings-buttons span:first-child:hover {
+  color: Lime;
+}
+div.settings-buttons span:last-child {
+  float: right;
+  margin-right: 2vw;
+  color: DarkRed;
+  text-shadow: none;
+}
+div.settings-buttons span:last-child:hover {
+  color: Red;
+}
+
+#snake-length {
+  width: 50%;
+}
+
+#saved-stamp {
+  display: none;
+  z-index: 100;
+  position: absolute;
+  bottom: 50%;
+  right: 50%;
+  transform: translate(50%, 50%) rotateZ(20deg);
+  font-size: 15vh;
+  color: Red;
+}
+
+@media screen and (max-width: 450px) {
+ #settings-panel {
+  width: 90%;
+}
+ .snake-text-input, #snake-length, div.settings-buttons {
+  width: 100%;
+ }
+}

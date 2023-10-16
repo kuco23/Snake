@@ -114,9 +114,7 @@
         snake: {
           length: 20,
           radius: radius,
-          speed: 1.2,
-          x: canvas.width / 2,
-          y: canvas.height / 2
+          speed: 1.2
         },
         graphics: {
           canvas: canvas,
@@ -145,7 +143,7 @@
     <div id='menu-panel' class='base-panel'>
       <span id='title'>SNAKE</span>
       <a onclick='startGame()'>Start</a>
-      <a id='unfinished'>Game&nbsp;Mode</a>
+      <a style="cursor: not-allowed;">Game&nbsp;Mode</a>
       <a onclick='toInfo()'>Info</a>
       <a onclick='toSettings()'>Settings</a>
     </div>

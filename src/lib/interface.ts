@@ -8,9 +8,7 @@ interface PlayerConfig {
 interface SnakeConfig {
   length: number,
   radius: number,
-  speed: number,
-  x: number,
-  y: number
+  speed: number
 }
 
 export interface GraphicsConfig {

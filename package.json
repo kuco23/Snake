@@ -5,16 +5,14 @@
   "source": "src/index.html",
   "scripts": {
     "build": "parcel build",
-    "start": "parcel src/index.html"
+    "start": "parcel src/index.html",
+    "build-dev": "parcel build ./src/index.html --no-optimize --public-url ./"
   },
   "author": "Nejc Ševerkar",
   "license": "MIT",
-  "dependencies": {
-    "jquery": "^3.7.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "parcel": "^2.6.2",
-    "stream-browserify": "^3.0.0",
     "typescript": "^5.1.6"
   }
 }

@@ -7,13 +7,12 @@ class Snake {
   constructor(
     public length: number,
     public radius: number,
-    public speed: number,
-    x: number,
-    y: number
+    public speed: number
   ) {
     for (let _ = 0; _ < length; _++) {
-      this.parts.push(new Point(x, y))
-      x -= 2 * this.radius
+      const randX = Math.floor(Math.random() * (window.innerWidth - 2 * radius))
+      const randY = Math.floor(Math.random() * (window.innerHeight / 2))
+      this.parts.push(new Point(randX, randY))
     }
   }
 
@@ -38,8 +37,9 @@ class Snake {
 
     let i = smallestDistancePartIndex
     for (let _ = 0; _ < this.length - 1; _++) {
-      const prev = this.parts[i % this.length]
-      const curr = this.parts[(i + 1) % this.length]
+      if (i == this.length) i = 0
+      const prev = this.parts[i]
+      const curr = this.parts[(i + 1) == this.length ? 0 : (i + 1)]
       const dist = prev.subtract(curr).norm()
       if (dist > 2 * this.radius + this.speed) {
         const dir = prev.subtract(curr).normed().mul(this.speed)
@@ -165,9 +165,7 @@ export class SnakeGameHTML {
     return new Snake(
       this.config.snake.length,
       this.config.snake.radius,
-      this.config.snake.speed,
-      this.config.snake.x,
-      this.config.snake.y
+      this.config.snake.speed
     )
   }
 

@@ -1,0 +1,25 @@
+on:
+  push:
+    branches:
+      - main
+permissions:
+    contents: write
+jobs:
+  build-test-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: git checkout
+        uses: actions/checkout@v4
+      - name: setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16.x
+      - run: yarn
+      - run: yarn build
+      - name: deploy page
+        uses: crazy-max/ghaction-github-pages@v2
+        with:
+          target-branch: main
+          build_dir: dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

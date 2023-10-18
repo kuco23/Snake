@@ -4,137 +4,13 @@
 <head>
   <title>Snake</title>
   <meta name='viewport' content='width=device-width, initial-scale=1.0' charset='utf-8' />
-  <script src="https://code.jquery.com/jquery-latest.min.js"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Indie+Flower|Bungee+Hairline">
   <link rel="stylesheet" type="text/css" href="css/menu_panel.css" />
   <link rel="stylesheet" type="text/css" href="css/settings_panel.css" />
   <link rel="stylesheet" type="text/css" href="css/game_over_panel.css" />
   <link rel="stylesheet" type="text/css" href="css/info_panel.css" />
   <link rel="stylesheet" type="text/css" href="css/shared.css" />
-
-  <script>
-
-    const PAGE_TRANSITION_SECONDS = 1000
-
-    function toMenu() {
-      $('#settings-panel-container').fadeOut(PAGE_TRANSITION_SECONDS)
-      $('#game-over-div div:nth-child(1)').fadeOut(PAGE_TRANSITION_SECONDS)
-      $('#game-over-div div:nth-child(2)').fadeOut(PAGE_TRANSITION_SECONDS)
-      $('#game-over-div').fadeOut(PAGE_TRANSITION_SECONDS)
-      $('#info-panel-container').fadeOut(PAGE_TRANSITION_SECONDS)
-      setTimeout(function() {
-        $('body').css('background-color', 'rgb(211, 211, 211)')
-        $('#menu-panel-container').fadeIn(PAGE_TRANSITION_SECONDS)
-      }, PAGE_TRANSITION_SECONDS)
-    }
-
-    function toSettings() {
-      $('#menu-panel-container').fadeOut(PAGE_TRANSITION_SECONDS, function() {
-        $('#settings-panel-container').css('visibility', 'visible').hide().fadeIn(PAGE_TRANSITION_SECONDS)
-      })
-      $('#player-color').val(document.game.config.graphics.playerColor)
-      $('#snake-color').val(document.game.config.graphics.snakeColor)
-      const slider = document.getElementById('snake-length')
-      slider.value = document.game.config.snake.length
-      $('#snake-length-output').html(slider.value)
-      slider.oninput = function() {
-        $('#snake-length-output').html(this.value)
-      }
-    }
-
-    function toInfo() {
-      $('#menu-panel-container').fadeOut(PAGE_TRANSITION_SECONDS, function() {
-        $('#info-panel-container').css('visibility', 'visible').hide().fadeIn(PAGE_TRANSITION_SECONDS)
-      })
-    }
-
-    function saveSettings() {
-      document.game.config.snake.length = $('#snake-length').val()
-      document.game.config.graphics.snakeColor = $('#snake-color').val()
-      document.game.config.graphics.playerColor = $('#player-color').val()
-      $('#saved-stamp').fadeIn(PAGE_TRANSITION_SECONDS, function() {
-        $('#saved-stamp').fadeOut(PAGE_TRANSITION_SECONDS)
-      })
-    }
-
-    function startGame() {
-      $('#menu-panel-container').fadeOut(PAGE_TRANSITION_SECONDS, function() {
-        $('#game-canvas').fadeIn(PAGE_TRANSITION_SECONDS).css('display', 'block')
-      })
-      setTimeout(document.game.start.bind(document.game), PAGE_TRANSITION_SECONDS)
-    }
-
-    function restartGame() {
-      $('#game-over-div div:nth-child(1)').fadeOut(PAGE_TRANSITION_SECONDS)
-      $('#game-over-div div:nth-child(2)').fadeOut(PAGE_TRANSITION_SECONDS)
-      $('#game-over-div').fadeOut(PAGE_TRANSITION_SECONDS, function() {
-        $('#game-canvas').fadeIn(PAGE_TRANSITION_SECONDS).css('display', 'block')
-        $('body').css('background-color', 'rgb(211, 211, 211)')
-      })
-      setTimeout(document.game.start.bind(document.game), PAGE_TRANSITION_SECONDS)
-    }
-
-    function onEndGame(gameWon) {
-      (gameWon) ?
-        $('#game-over-div div:nth-child(1)').css('display', 'block') :
-        $('#game-over-div div:nth-child(2)').css('display', 'block')
-      $('#game-canvas').fadeOut(PAGE_TRANSITION_SECONDS, function() {
-        $('body').css('background-color', 'black')
-        $('#game-over-div').fadeIn(PAGE_TRANSITION_SECONDS)
-      })
-    }
-
-    function _resizeCanvas() {
-      $('#game-canvas').attr({
-        width: window.innerWidth,
-        height: window.innerHeight
-      })
-    }
-
-  </script>
-
-  <script type="module">
-
-    import { SnakeGameHTML } from './lib/game.ts'
-
-    $(document).ready(function() {
-
-      _resizeCanvas()
-
-      const canvas = document.getElementById('game-canvas')
-      const radius = 10
-
-      document.game = new SnakeGameHTML({
-        player: {
-          speed: 2,
-          radius: radius,
-          x: canvas.width / 2,
-          y: canvas.height - radius * 4
-        },
-        snake: {
-          length: 20,
-          radius: radius,
-          speed: 1.2
-        },
-        graphics: {
-          canvas: canvas,
-          context: canvas.getContext('2d'),
-          snakeColor: 'black',
-          playerColor: 'black'
-        },
-        framesPerSec: 50
-      })
-    })
-
-    $(window).on('resize', function() {
-      if (document.game.inProgress) {
-        alert("I didn't spend my time making this game just so you could resize the fucking window.")
-        document.game.end()
-      }
-      _resizeCanvas()
-    })
-
-  </script>
+  <script type="module" src="lib/main.ts"></script>
 </head>
 
 <body>
@@ -142,10 +18,10 @@
   <div id='menu-panel-container' class='align-center'>
     <div id='menu-panel' class='base-panel'>
       <span id='title'>SNAKE</span>
-      <a onclick='startGame()'>Start</a>
+      <a id="run-start-game">Start</a>
       <a style="cursor: not-allowed;">Game&nbsp;Mode</a>
-      <a onclick='toInfo()'>Info</a>
-      <a onclick='toSettings()'>Settings</a>
+      <a id="run-to-info">Info</a>
+      <a id="run-to-settings">Settings</a>
     </div>
   </div>
 
@@ -162,8 +38,8 @@
         Player&nbsp;color:<br />
         <input type='text' id='player-color' name='player-color' class='snake-text-input'><br />
         <div class='settings-buttons'>
-          <span onclick='saveSettings()'>Save</span>
-          <span onclick='toMenu()'>Go&nbsp;Back</span>
+          <span id="run-save-settings">Save</span>
+          <span id="run-settings-to-menu">Go&nbsp;Back</span>
         </div>
       </div>
     </div>
@@ -177,7 +53,7 @@
         with the arrow keys.
       </div>
       <div class='to-menu-button'>
-        <span onclick='toMenu()'>Go&nbsp;Back</span>
+        <span id="run-info-to-menu">Go&nbsp;Back</span>
       </div>
     </div>
   </div>
@@ -196,7 +72,7 @@
     </div>
     <div>
       Play&nbsp;Again:&nbsp;
-      <span onclick='restartGame()'>Y</span>/<span onclick='toMenu()'>N</span>
+      <span id="run-restart-game">Y</span>/<span id="run-game-to-menu">N</span>
     </div>
   </div>
 

@@ -1,6 +1,7 @@
 import { Point } from './shared'
 import { GraphicsConfig, GameConfig } from './interface'
 
+
 class Snake {
   public parts: Array<Point> = []
 
@@ -134,10 +135,11 @@ export class SnakeGameHTML {
   public player: Player
   private direction: boolean[] = [false, false, false, false]
   public inProgress: boolean = false
-  private interval?: number
+  private interval?: NodeJS.Timeout
 
   constructor (
-    public config: GameConfig
+    public config: GameConfig,
+    public onEndGame: (gameWon: boolean) => void
   ) {
     this.graphics = new SnakeGameGraphics(config.graphics)
     this.snake = this.snakeFromConfig()
@@ -206,7 +208,6 @@ export class SnakeGameHTML {
     this.inProgress = false
     this.graphics.clear()
     clearInterval(this.interval)
-    // @ts-ignore (callback is in the html file)
-    onEndGame(gameWon)
+    this.onEndGame(gameWon)
   }
 }

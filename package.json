@@ -4,18 +4,20 @@
   "description": "",
   "source": "src/index.html",
   "scripts": {
-    "build": "parcel build --public-url ./",
-    "start": "parcel src/index.html",
-    "build-dev": "parcel build ./src/index.html --no-optimize --public-url ./",
+    "build": "rimraf .parcel-cache dist && parcel build src/index.html --public-url ./",
+    "start": "rimraf .parcel-cache dist && parcel src/index.html",
     "deploy": "gh-pages -d dist"
-
   },
   "author": "Nejc Ševerkar",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "jquery": "^3.7.0"
+  },
   "devDependencies": {
+    "@types/jquery": "^3.5.24",
     "gh-pages": "^6.0.0",
     "parcel": "^2.6.2",
+    "rimraf": "^5.0.5",
     "typescript": "^5.1.6"
   }
 }
